@@ -1,26 +1,13 @@
+import { legacy_createStore as createStore } from "redux";
 export {};
 
 const add = document.getElementById("add") as HTMLElement;
 const minus = document.getElementById("minus") as HTMLElement;
 const number = document.querySelector("span") as HTMLElement;
 
-let count = 0;
-
-number.innerText = count.toString();
-
-const updateText = () => {
-  number.innerText = count.toString();
+const countModifier = (count: number = 0) => {
+  return count;
 };
+const countStore = createStore(countModifier);
 
-const handleAdd = () => {
-  count++;
-  updateText();
-};
-
-const handleMinus = () => {
-  count = count - 1;
-  updateText();
-};
-
-add.addEventListener("click", handleAdd);
-minus.addEventListener("click", handleMinus);
+console.log(countStore.getState());
